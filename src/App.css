@@ -9,10 +9,6 @@
   /* text-transform: uppercase; */
 }
 
-hr.solid {
-  border-top: 1px solid #bbb;
-}
-
 .container {
   min-height: 100vh;
   background: #eee;
