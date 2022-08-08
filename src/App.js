@@ -80,7 +80,41 @@ function App() {
 
   return (
     <div className="container">
-
+      <div className="card-container">
+        <div className="front">
+          <div className="image">
+            <img src={require('./image/chip.png')} alt="" />
+            <div>
+              <img src={require('./image/visa.png')} alt="" />
+              <img src={require('./image/mastercard.png')} alt="" />
+            </div>
+          </div>
+          <div className="card-number-box">{state.cardNumber}</div>
+          <div className="flexbox">
+            <div className="box">
+              <span>KART SAHİBİNİN ADI</span>
+              <div className="card-holder-name">{state.cardHolderName}</div>
+            </div>
+            <div className="box">
+              <span>EXPIRES</span>
+              <div className="expiration">
+                <span className="exp-month">{state.expireMonth}</span>
+                /
+                <span className="exp-year">{state.expireYear}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="back">
+          <div className="stripe" />
+          <div className="box">
+            <span>CVV</span>
+            <div className="cvv-box">{state.cardCode}</div>
+            <img src={require('./image/visa.png')} alt="" />
+            <img src={require('./image/mastercard.png')} alt="" />
+          </div>
+        </div>
+      </div>
       <Form
         spacing={2}
         onSubmit={onSubmit}
@@ -88,43 +122,6 @@ function App() {
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit} id="payment-form" name="form">
             <input type="hidden" name="Is3D" />
-            <div className="card-container">
-              <div className="front">
-                <div className="image">
-                  <img src={require('./image/chip.png')} alt="" />
-                  <div>
-                    <img src={require('./image/visa.png')} alt="" />
-                    <img src={require('./image/mastercard.png')} alt="" />
-                  </div>
-                </div>
-                <div className="card-number-box">{state.cardNumber}</div>
-                <div className="flexbox">
-                  <div className="box">
-                    <span>KART SAHİBİNİN ADI</span>
-                    <div className="card-holder-name">{state.cardHolderName}</div>
-                  </div>
-                  <div className="box">
-                    <span>EXPIRES</span>
-                    <div className="expiration">
-                      <span className="exp-month">{state.expireMonth}</span>
-                      /
-                      <span className="exp-year">{state.expireYear}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="back">
-                <div className="stripe" />
-                <div className="box">
-                  <span>CVV</span>
-                  <div className="cvv-box">{state.cardCode}</div>
-                  <img src={require('./image/visa.png')} alt="" />
-                  <img src={require('./image/mastercard.png')} alt="" />
-                </div>
-              </div>
-            </div>
-            <br />
-            <br />
             <div className="inputBox">
               <span>KART NUMARASI</span>
               <input type="text" maxLength={16} className="card-number-input" name="cardNumber" id="CardNumber" onChange={handleInputChange} />
