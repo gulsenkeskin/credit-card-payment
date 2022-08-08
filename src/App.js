@@ -25,7 +25,7 @@ function App() {
           onSubmit={onSubmit}
           validate={validate}
           render={({ handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}  id="payment-form" name="form">
               <input type="hidden" name="Is3D" />
               <div className="card-container">
                 <div className="front">
@@ -39,15 +39,15 @@ function App() {
                   <div className="card-number-box">################</div>
                   <div className="flexbox">
                     <div className="box">
-                      <span>Kart sahibinin adı</span>
-                      <div className="card-holder-name">ad soyad</div>
+                      <span>KART SAHİBİNİN ADI</span>
+                      <div className="card-holder-name">AD SOYAD</div>
                     </div>
                     <div className="box">
-                      <span>expires</span>
+                      <span>EXPIRES</span>
                       <div className="expiration">
-                        <span className="exp-month">mm</span>
+                        <span className="exp-month">MM</span>
                         /
-                        <span className="exp-year">yy</span>
+                        <span className="exp-year">YY</span>
                       </div>
                     </div>
                   </div>
@@ -65,16 +65,16 @@ function App() {
               <br />
               <br />
               <div className="inputBox">
-                <span>kart numarası</span>
+                <span>KART NUMARASI</span>
                 <input type="text" maxLength={16} className="card-number-input" name="card-number" id="CardNumber" />
               </div>
               <div className="inputBox">
-                <span>kart sahibinin adı</span>
+                <span>KART SAHİBİNİN ADI</span>
                 <input type="text" className="card-holder-input" maxLength={27} id="the-card-name-id" name="CardholderName" />
               </div>
               <div className="flexbox">
                 <div className="inputBox">
-                  <span>  AY</span>
+                  <span>AY</span>
                   <select name="ExpireMonth" id className="month-input">
                     <option value="month" selected disabled>ay</option>
                     <option value="01">01</option>
@@ -92,7 +92,7 @@ function App() {
                   </select>
                 </div>
                 <div className="inputBox">
-                  <span>  YIL</span>
+                  <span>YIL</span>
                   <select name="ExpireYear" id className="year-input">
                     <option value="year" selected disabled>yıl</option>
                     <option value="22">22</option>
@@ -111,12 +111,12 @@ function App() {
                   </select>
                 </div>
                 <div className="inputBox">
-                  <span>güvenlik kodu (cvv)</span>
+                  <span>GÜVENLİK KODU(CVV)</span>
                   <input name="CardCode" type="text" maxLength={3} className="cvv-input" />
                 </div>
               </div>
               <br />
-              <input type="submit" defaultValue="ödemeyi tamamla" className="submit-btn" name="paymentButton" />
+              <input type="submit" value="ÖDEMEYİ TAMAMLA" className="submit-btn" name="paymentButton" />
             </form>
           )}
         />
