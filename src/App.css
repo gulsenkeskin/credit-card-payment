@@ -20,7 +20,7 @@ hr.solid {
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  padding-top: 10px;
+  padding-bottom: 60px;
 }
 
 .container form {
@@ -29,6 +29,7 @@ hr.solid {
   box-shadow: 0 10px 15px rgba(0, 0, 0, .1);
   padding: 20px;
   width: 600px;
+  padding-top: 160px;
 }
 
 .container form .inputBox {
@@ -81,10 +82,8 @@ hr.solid {
   position: relative;
   height: 250px;
   width: 400px;
-  margin: auto;
+  margin-bottom: -150px;
 }
-
-
 
 .container .card-container .front {
   position: absolute;
