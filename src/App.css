@@ -59,7 +59,7 @@
 
 .container form .submit-btn {
   width: 100%;
-  background: linear-gradient(45deg, #023047, #219ebc);
+  background: linear-gradient(45deg, #023047, grey);
   margin-top: 20px;
   padding: 10px;
   font-size: 20px;
@@ -87,7 +87,7 @@
   width: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(45deg, #023047, #219ebc);
+  background: linear-gradient(45deg, #023047, grey);
   border-radius: 5px;
   backface-visibility: hidden;
   box-shadow: 0 15px 25px rgba(0, 0, 0, .2);
@@ -137,7 +137,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background: linear-gradient(45deg, #023047, #219ebc);
+  background: linear-gradient(45deg, #023047, grey);
   border-radius: 5px;
   padding: 20px 0;
   text-align: right;
