@@ -39,15 +39,17 @@ function App() {
     const name = target.name;
 
     if (value === "") {
-      setState({
-        ...state,
-        [name]: initialState[name],
-      });
+      changeValue(name, initialState[name]);
+      // setState({
+      //   ...state,
+      //   [name]: initialState[name],
+      // });
     } else {
-      setState({
-        ...state,
-        [name]: value,
-      });
+      // setState({
+      //   ...state,
+      //   [name]: value,
+      // });
+      changeValue(name, value);
     }
 
     if (name === "cardNumber") {
@@ -65,6 +67,13 @@ function App() {
         changeCardLogo("all");
       }
     }
+  }
+
+  function changeValue(name, value) {
+    setState({
+      ...state,
+      [name]: value,
+    });
   }
 
   function changeCardLogo(cardType) {
