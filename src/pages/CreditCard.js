@@ -3,14 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Form } from "react-final-form";
 import { ApiURL } from "../Constants";
 import { Http } from "../Common";
-import { useHistory } from 'react-router-dom';
-
+import { useHistory } from "react-router-dom";
 
 // import { makeStyles } from "@material-ui/core/styles";
 
 // const useStyles = makeStyles((theme) => ({
 // }));
-
 
 function CreditCard() {
   const [state, setState] = useState({});
@@ -18,7 +16,6 @@ function CreditCard() {
   const [posData, setPosData] = useState({});
 
   const history = useHistory();
-
 
   const initialState = {
     cardNumber: "################",
@@ -154,10 +151,12 @@ function CreditCard() {
       is3D: 1,
       selectedPosData: posData,
     })
-      .then((response) => {
-        console.log("response", response);
+      .then((res) => {
+        console.log("response", res);
+        localStorage.setItem("data" ,res.data);
 
         history.push('/pay');
+        //   history.push('/pay', res);
 
       })
       .catch(function (error) {
@@ -190,7 +189,7 @@ function CreditCard() {
         }
       });
 
-      console.log("funcposData",posData);
+    console.log("funcposData", posData);
   };
 
   return (

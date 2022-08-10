@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
- function Pay() {
-  return (
-    <div>Pay</div>
-  )
+function Pay() {
+  const ls = localStorage.getItem("data");
+
+  console.log(ls);
+  return ls;
 }
-
 
 export default Pay;
