@@ -1,6 +1,10 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-final-form";
+import { ApiURL } from "./Constants";
+import { Http } from "./Common";
+import axios from "axios";
+
 // import { makeStyles } from "@material-ui/core/styles";
 
 // const useStyles = makeStyles((theme) => ({
@@ -9,6 +13,7 @@ import { Form } from "react-final-form";
 function App() {
   const [state, setState] = useState({});
   const [cardType, setCardType] = useState("all");
+  const [posData, setPosData] = useState({});
 
   const initialState = {
     cardNumber: "################",
@@ -23,14 +28,11 @@ function App() {
       expireMonth: "MM",
       expireYear: "YY",
       cardCode: "",
-      cardType: "all",
     });
   }, []);
 
   // const classes = useStyles();
 
-  function handleSubmit() {}
-  function onSubmit() {}
   function validate() {}
 
   function handleInputChange(event) {
@@ -138,6 +140,51 @@ function App() {
       "perspective(1000px) rotateY(180deg)";
   }
 
+  const handleSubmit = async (data, form) => {
+    console.log("data", data);
+    console.log("form", form);
+
+    await Http.post(`${ApiURL}/index`, {
+      ...state,
+      is3D: 1,
+      selectedPosData: posData,
+    })
+      .then((response) => {
+        console.log("response", response);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log(error.message);
+        }
+      });
+  };
+
+  const cardNumberOnBlur = async () => {
+    let posData = await Http.post(`${ApiURL}/checkBinCode`, {
+      binCode: state.cardNumber,
+    })
+      .then((res) => {
+        console.log("cardNumberOnBlurRes", res);
+        setPosData(res.data.postResponse.data[0]);
+        return res.data.postResponse.data[0];
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log(error.message);
+        }
+      });
+
+      console.log("funcposData",posData);
+  };
+
   return (
     <div className="container">
       <div className="card-container">
@@ -179,7 +226,7 @@ function App() {
       </div>
       <Form
         spacing={2}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
         validate={validate}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit} id="payment-form" name="form">
@@ -193,6 +240,7 @@ function App() {
                 name="cardNumber"
                 id="CardNumber"
                 onChange={handleInputChange}
+                onBlur={cardNumberOnBlur}
               />
             </div>
             <div className="inputBox">
