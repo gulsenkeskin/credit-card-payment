@@ -1,4 +1,4 @@
-import "./App.css";
+import "../App.css";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-final-form";
 import { ApiURL } from "../Constants";
@@ -96,11 +96,11 @@ function CreditCard() {
   }
 
   function masterLogo() {
-    return <img src={require("./image/mastercard.png")} alt="" />;
+    return <img src={require("../image/mastercard.png")} alt="" />;
   }
 
   function visaLogo() {
-    return <img src={require("./image/visa.png")} alt="" />;
+    return <img src={require("../image/visa.png")} alt="" />;
   }
 
   function defaultColor() {
@@ -189,12 +189,12 @@ function CreditCard() {
       <div className="card-container">
         <div className="front">
           <div className="image">
-            <img src={require("./image/chip.png")} alt="" />
+            <img src={require("../image/chip.png")} alt="" />
             <div>
               {cardLogo()}
 
-              {/* <img src={require("./image/visa.png")} alt="" />
-              <img src={require("./image/mastercard.png")} alt="" /> */}
+              {/* <img src={require("../image/visa.png")} alt="" />
+              <img src={require("../image/mastercard.png")} alt="" /> */}
             </div>
           </div>
           <div className="card-number-box">{state.cardNumber}</div>
@@ -218,8 +218,8 @@ function CreditCard() {
             <span>CVV</span>
             <div className="cvv-box">{state.cardCode}</div>
             {cardLogo()}
-            {/* <img src={require("./image/visa.png")} alt="" />
-            <img src={require("./image/mastercard.png")} alt="" /> */}
+            {/* <img src={require("../image/visa.png")} alt="" />
+            <img src={require("../image/mastercard.png")} alt="" /> */}
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import CreditCard from "./pages/CreditCard";
+import Pay from "./pages/Pay";
 
 
 export default function App() {
