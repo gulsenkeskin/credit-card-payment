@@ -153,11 +153,10 @@ function CreditCard() {
     })
       .then((res) => {
         console.log("response", res);
-        localStorage.setItem("data" ,res.data);
+        // localStorage.setItem("data" ,res.data);
 
-        history.push('/pay');
-        //   history.push('/pay', res);
-
+        // history.push('/pay');
+        history.push("/pay", res.data);
       })
       .catch(function (error) {
         if (error.response) {
