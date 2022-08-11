@@ -246,6 +246,7 @@ function CreditCard() {
                   onChange={handleInputChange}
                   defaultValue="ay"
                 >
+                  <option value="month">ay</option>
                   <option value="01">01</option>
                   <option value="02">02</option>
                   <option value="03">03</option>
@@ -268,6 +269,7 @@ function CreditCard() {
                   onChange={handleInputChange}
                   defaultValue="yıl"
                 >
+                  <option value="year">yıl</option>
                   <option value="22">22</option>
                   <option value="23">23</option>
                   <option value="24">24</option>
