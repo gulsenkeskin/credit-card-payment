@@ -132,14 +132,13 @@ function CreditCard() {
       "perspective(1000px) rotateY(180deg)";
   }
 
-  const handleSubmit = async (data, form) => {
+  const handleSubmit = async () => {
     await Http.post(`${ApiURL}/index`, {
       ...state,
       is3D: 1,
       selectedPosData: posData,
     })
       .then((res) => {
-        console.log("response", res);
         history.push("/pay", res.data);
       })
       .catch(function (error) {
@@ -162,7 +161,8 @@ function CreditCard() {
       binCode: state.cardNumber,
     })
       .then((res) => {
-        setPosData(res.data.postResponse.data[0]);
+        setPosData(res.data.posResponse.data[0]);
+
       })
       .catch(function (error) {
         errorFnc(error);
