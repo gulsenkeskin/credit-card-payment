@@ -16,7 +16,7 @@ export default function App() {
           <Route exact path="/">
             <CreditCard />
           </Route>
-          <Route path="/pay">
+          <Route path="/payment">
             <Pay />
           </Route>
         </Switch>

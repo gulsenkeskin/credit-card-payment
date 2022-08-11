@@ -6,7 +6,6 @@ function Pay(props) {
   var res = location.state;
 
   return(<iframe
-    // style={{ justifySelf: "end" }}
     title="faturaOnizleme"
     width={"100%"}
     height={window.innerHeight}

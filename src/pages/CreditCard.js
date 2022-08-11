@@ -139,7 +139,7 @@ function CreditCard() {
       selectedPosData: posData,
     })
       .then((res) => {
-        history.push("/pay", res.data);
+        history.push("/payment", res.data);
       })
       .catch(function (error) {
         errorFnc(error);
