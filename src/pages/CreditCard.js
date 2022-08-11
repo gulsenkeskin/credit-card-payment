@@ -242,13 +242,10 @@ function CreditCard() {
                 <span>AY</span>
                 <select
                   name="expireMonth"
-                  id
                   className="month-input"
                   onChange={handleInputChange}
+                  defaultValue="ay"
                 >
-                  <option defaultValue="month" selected disabled>
-                    ay
-                  </option>
                   <option value="01">01</option>
                   <option value="02">02</option>
                   <option value="03">03</option>
@@ -267,13 +264,10 @@ function CreditCard() {
                 <span>YIL</span>
                 <select
                   name="expireYear"
-                  id
                   className="year-input"
                   onChange={handleInputChange}
+                  defaultValue="yıl"
                 >
-                  <option defaultValue="year" selected disabled>
-                    yıl
-                  </option>
                   <option value="22">22</option>
                   <option value="23">23</option>
                   <option value="24">24</option>
