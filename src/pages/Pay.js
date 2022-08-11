@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 
 function Pay(props) {
   const location = useLocation();
@@ -7,7 +7,11 @@ function Pay(props) {
   var data = res.data;
   var settings = data._settings;
 
-  const url =res.formUrl;
+  const url = res.formUrl;
+
+  // function onSubmit() {
+  //   return <Redirect to={url} />;
+  // }
 
   return (
     <form
@@ -15,17 +19,30 @@ function Pay(props) {
       action={url}
       method="post"
       target="_blank"
+      // onSubmit={onSubmit}
     >
       <input type="hidden" name="pos_id" value={data.PosId ?? ""} />
-      <input type="hidden" name="cc_holder_name" value={data.CCHolderName ?? ""} />
+      <input
+        type="hidden"
+        name="cc_holder_name"
+        value={data.CCHolderName ?? ""}
+      />
       <input type="hidden" name="cc_no" value={data.CCNo ?? ""} />
       <input type="hidden" name="expiry_month" value={data.ExpiryMonth ?? ""} />
       <input type="hidden" name="expiry_year" value={data.ExpiryYear ?? ""} />
       <input type="hidden" name="cvv" value={data.CCV ?? ""} />
       <input type="hidden" name="currency_id" value={data.CurrencyId ?? ""} />
-      <input type="hidden" name="currency_code" value={data.CurrencyCode ?? ""} />
+      <input
+        type="hidden"
+        name="currency_code"
+        value={data.CurrencyCode ?? ""}
+      />
       <input type="hidden" name="campaign_id" value={data.CampaignId ?? ""} />
-      <input type="hidden" name="allocation_id" value={data.AllocationId ?? ""} />
+      <input
+        type="hidden"
+        name="allocation_id"
+        value={data.AllocationId ?? ""}
+      />
       <input
         type="hidden"
         name="installments_number"
@@ -42,10 +59,18 @@ function Pay(props) {
         value={data.InvoiceDescription ?? ""}
       />
       <input type="hidden" name="total" value={data.Total ?? ""} />
-      <input type="hidden" name="merchant_key" value={settings.merchantKey ?? ""} />
+      <input
+        type="hidden"
+        name="merchant_key"
+        value={settings.merchantKey ?? ""}
+      />
       <input type="hidden" name="app_id" value={settings.appID ?? ""} />
       <input type="hidden" name="app_secret" value={settings.appSecret ?? ""} />
-      <input type="hidden" name="payable_amount" value={data.PayableAmount ?? ""} />
+      <input
+        type="hidden"
+        name="payable_amount"
+        value={data.PayableAmount ?? ""}
+      />
       <input
         type="hidden"
         name="items"
