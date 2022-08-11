@@ -43,7 +43,7 @@ function CreditCard() {
     }
 
     if (name === "cardNumber") {
-      if (value === "4") {
+      if (value.startsWith(4)) {
         visaColor();
         changeCardLogo("visa");
       } else if (
