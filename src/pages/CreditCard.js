@@ -129,8 +129,6 @@ function CreditCard() {
   const handleSubmit = async () => {
     await Http.post(`${ApiURL}/index`, {
       ...state,
-      is3D: 1,
-      selectedPosData: posData,
     })
       .then((res) => {
         history.push("/payment", res.data);
@@ -149,19 +147,6 @@ function CreditCard() {
       console.log(error.message);
     }
   }
-
-  const cardNumberOnBlur = async () => {
-    await Http.post(`${ApiURL}/checkBinCode`, {
-      binCode: state.cardNumber,
-    })
-      .then((res) => {
-        setPosData(res.data.posResponse.data[0]);
-
-      })
-      .catch(function (error) {
-        errorFnc(error);
-      });
-  };
 
   return (
     <div className="container">
@@ -217,7 +202,6 @@ function CreditCard() {
                 name="cardNumber"
                 id="CardNumber"
                 onChange={handleInputChange}
-                onBlur={cardNumberOnBlur}
               />
             </div>
             <div className="inputBox">
