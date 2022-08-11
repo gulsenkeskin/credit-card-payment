@@ -44,15 +44,7 @@ function CreditCard() {
 
     if (value === "") {
       changeValue(name, initialState[name]);
-      // setState({
-      //   ...state,
-      //   [name]: initialState[name],
-      // });
     } else {
-      // setState({
-      //   ...state,
-      //   [name]: value,
-      // });
       changeValue(name, value);
     }
 
@@ -119,10 +111,8 @@ function CreditCard() {
     document.querySelector(".back").style.background = bgColor;
     document.querySelector(".submit-btn").style.background = bgColor;
   }
-
   function masterColor() {
     let bgColor = "linear-gradient(45deg, #dc2f02, #ffba08)";
-    // let bgColor ="linear-gradient(-120deg, #cc0000, #ff9900, #000066)";
     document.querySelector(".front").style.background = bgColor;
     document.querySelector(".back").style.background = bgColor;
     document.querySelector(".submit-btn").style.background = bgColor;
@@ -143,9 +133,6 @@ function CreditCard() {
   }
 
   const handleSubmit = async (data, form) => {
-    console.log("data", data);
-    console.log("form", form);
-
     await Http.post(`${ApiURL}/index`, {
       ...state,
       is3D: 1,
@@ -153,42 +140,33 @@ function CreditCard() {
     })
       .then((res) => {
         console.log("response", res);
-        // localStorage.setItem("data" ,res.data);
-
-        // history.push('/pay');
         history.push("/pay", res.data);
       })
       .catch(function (error) {
-        if (error.response) {
-          console.log(error.response.data);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log(error.message);
-        }
+        errorFnc(error);
       });
   };
 
+  function errorFnc(error) {
+    if (error.response) {
+      console.log(error.response.data);
+    } else if (error.request) {
+      console.log(error.request);
+    } else {
+      console.log(error.message);
+    }
+  }
+
   const cardNumberOnBlur = async () => {
-    let posData = await Http.post(`${ApiURL}/checkBinCode`, {
+    await Http.post(`${ApiURL}/checkBinCode`, {
       binCode: state.cardNumber,
     })
       .then((res) => {
-        console.log("cardNumberOnBlurRes", res);
         setPosData(res.data.postResponse.data[0]);
-        return res.data.postResponse.data[0];
       })
       .catch(function (error) {
-        if (error.response) {
-          console.log(error.response.data);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log(error.message);
-        }
+        errorFnc(error);
       });
-
-    console.log("funcposData", posData);
   };
 
   return (
@@ -199,7 +177,6 @@ function CreditCard() {
             <img src={require("../image/chip.png")} alt="" />
             <div>
               {cardLogo()}
-
               {/* <img src={require("../image/visa.png")} alt="" />
               <img src={require("../image/mastercard.png")} alt="" /> */}
             </div>
