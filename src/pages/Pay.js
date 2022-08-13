@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Redirect, useLocation } from "react-router-dom";
 
-function Pay(props) {
+function Pay() {
   const location = useLocation();
   var res = location.state;
 

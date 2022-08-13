@@ -1,33 +1,24 @@
 import "../App.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form } from "react-final-form";
 import { ApiURL } from "../Constants";
 import { Http } from "../Common";
 import { useHistory } from "react-router-dom";
 
 function CreditCard() {
-  const [state, setState] = useState({});
-  const [cardType, setCardType] = useState("all");
-  const [posData, setPosData] = useState({});
-
-  const history = useHistory();
-
   const initialState = {
     cardNumber: "################",
     cardHolderName: "AD SOYAD",
+    expireMonth: "MM",
+    expireYear: "YY",
     cardCode: "",
   };
-
-  useEffect(() => {
-    setState({
-      cardNumber: "################",
-      cardHolderName: "AD SOYAD",
-      expireMonth: "MM",
-      expireYear: "YY",
-      cardCode: "",
-    });
-  }, []);
-
+  const [state, setState] = useState(initialState);
+  const [cardType, setCardType] = useState("all");
+  const history = useHistory();
+  const defaultColor = "linear-gradient(45deg, #023047, grey)";
+  const visaColor = "linear-gradient(45deg, #023047, #219ebc)";
+  const masterColor = "linear-gradient(45deg, #dc2f02, #ffba08)";
 
   function validate() {}
 
@@ -44,16 +35,16 @@ function CreditCard() {
 
     if (name === "cardNumber") {
       if (value.startsWith(4)) {
-        visaColor();
+        changeCardColor(visaColor);
         changeCardLogo("visa");
       } else if (
         (value >= "51" && value <= "55") ||
         (value >= "22" && value <= "27")
       ) {
-        masterColor();
+        changeCardColor(masterColor);
         changeCardLogo("master");
       } else if (value === "" || value.length < 2) {
-        defaultColor();
+        changeCardColor(defaultColor);
         changeCardLogo("all");
       }
     }
@@ -92,21 +83,7 @@ function CreditCard() {
     return <img src={require("../image/visa.png")} alt="" />;
   }
 
-  function defaultColor() {
-    let bgColor = "linear-gradient(45deg, #023047, grey)";
-    document.querySelector(".front").style.background = bgColor;
-    document.querySelector(".back").style.background = bgColor;
-    document.querySelector(".submit-btn").style.background = bgColor;
-  }
-
-  function visaColor() {
-    let bgColor = "linear-gradient(45deg, #023047, #219ebc)";
-    document.querySelector(".front").style.background = bgColor;
-    document.querySelector(".back").style.background = bgColor;
-    document.querySelector(".submit-btn").style.background = bgColor;
-  }
-  function masterColor() {
-    let bgColor = "linear-gradient(45deg, #dc2f02, #ffba08)";
+  function changeCardColor(bgColor) {
     document.querySelector(".front").style.background = bgColor;
     document.querySelector(".back").style.background = bgColor;
     document.querySelector(".submit-btn").style.background = bgColor;
@@ -134,19 +111,15 @@ function CreditCard() {
         history.push("/payment", res.data);
       })
       .catch(function (error) {
-        errorFnc(error);
+        if (error.response) {
+          console.log(error.response.data);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log(error.message);
+        }
       });
   };
-
-  function errorFnc(error) {
-    if (error.response) {
-      console.log(error.response.data);
-    } else if (error.request) {
-      console.log(error.request);
-    } else {
-      console.log(error.message);
-    }
-  }
 
   return (
     <div className="container">
@@ -156,8 +129,6 @@ function CreditCard() {
             <img src={require("../image/chip.png")} alt="" />
             <div>
               {cardLogo()}
-              {/* <img src={require("../image/visa.png")} alt="" />
-              <img src={require("../image/mastercard.png")} alt="" /> */}
             </div>
           </div>
           <div className="card-number-box">{state.cardNumber}</div>
@@ -181,8 +152,6 @@ function CreditCard() {
             <span>CVV</span>
             <div className="cvv-box">{state.cardCode}</div>
             {cardLogo()}
-            {/* <img src={require("../image/visa.png")} alt="" />
-            <img src={require("../image/mastercard.png")} alt="" /> */}
           </div>
         </div>
       </div>
