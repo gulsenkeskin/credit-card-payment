@@ -1,1 +1,1 @@
-<img src='img/a.gif'>
+<img src='image/a.gif'>
